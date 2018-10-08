@@ -7,6 +7,7 @@ import Footer from './footer/Footer'
 import Home from './home/Home'
 import About from './about/About';
 import Contact from './contact/Contact';
+import Pro from './pro/Pro';
 
 class App extends Component {
 
@@ -31,11 +32,14 @@ class App extends Component {
         const mobile = this.state.isMobile ? 'App container' : 'App';
         
         return(            
-            <div className={mobile}>
+            <div className="App">
                 <Navbar />                
-                <Route exact path='/' component={Home} />
-                <Route path='/about' component={About} />
-                <Route path='/contact' component={Contact} />        
+                <div className={mobile}>
+                    <Route exact path='/' component={Home} />
+                    <Route path='/about' component={About} />
+                    <Route path='/contact' component={Contact} />    
+                    <Route path='/pro' component={Pro} />
+                </div>                    
                 <Footer />                    
             </div>
         )

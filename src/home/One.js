@@ -1,27 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import Oscar from './oscar.jpg'
+
+import OneBig from './OneBig'
+import OneSmall from './OneSmall'
+
+class One extends Component {
+    
+    state = {
+        isMobile: false
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', () => {
+            this.setState({
+                isMobile: window.innerWidth > 992
+            });                  
+        }, false);     
+        this.setState({
+            isMobile: window.innerWidth > 992
+        });
+        
+    }
 
 
-const One = () => {
-    return(
-        <div className="container-fluid">
-            <div className="row">
-                <div className="container-fluid text-center">
-                    <h2>About me</h2>
+    render(){
+        const mobile = !this.state.isMobile;
+        
+        let whichDiv = '';
+        
+        if (mobile) {
+            return(
+                <div className="container-fluid">
+                    <div className="row">
+                       <OneSmall /> 
+                    </div>                                
                 </div>
-                <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    <p className="text-left">Hola Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum aut hic quibusdam eum dolor blanditiis dignissimos fuga laudantium. Dolores libero assumenda laborum numquam! Incidunt sed nesciunt, assumenda ducimus ipsa velit.</p>
-                    <div className="container-fluid text-center">
-                        <NavLink to="/about" className="nav-link">More about me...</NavLink>
-                    </div>
+            )
+        }else{
+            return(
+                <div className="container-fluid">
+                    <div className="row">
+                        <OneBig />
+                    </div>                                
                 </div>
-                <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    <img src={Oscar} className="rounded-circle img-fluid oscarpic" alt="Cinque Terre" />
-                </div>                
-            </div>                       
-        </div>
-    )
+            )
+        }       
+
+        
+    }
+    
 }
 
 export default One; 

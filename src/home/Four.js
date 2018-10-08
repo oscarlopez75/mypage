@@ -1,4 +1,5 @@
 import React from 'react';
+import LandScape from './landscape.jpg'
 
 const Four = () => {
     return(
